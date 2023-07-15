@@ -28,7 +28,69 @@
     position: fixed;
     top: 80px;
     left: 200px;
+    width: 300px;
     background-color: lightgray;
-    border: 1px solid black;
+    font-size: 20px;
+    border-radius: 5px;
+    border: 1px solid darkgray;
+    padding: 10px;
+}
+
+#settings-container {
+    position: fixed;
+    height: 260px;
+    width: 400px;
+    top: 100px;
+    left: 100px;
+}
+
+#settings-box {
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    height: 200px;
+    width: 400px;
+    background-color: azure;
+    border: 1px solid darkgray;
+    border-top-width: 0px;
+}
+
+.tab {
+    position: absolute;
+    top: 0px;
+    height: 30px;
+    width: 100px;
+    border: 1px solid darkgray;
+    background-color: lightgray;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding-top: 10px;
+}
+
+.selected-tab {
+    border-bottom-width: 0px;
+    background-color: azure;
+    border-radius: -5px;
+}
+
+.tab:hover {
+    cursor:pointer
+}
+
+#point-tab {
+    left: 0px;
+}
+
+#line-tab {
+    left: 100px;
+}
+
+#curve-tab {
+    left: 200px;
+}
+
+#animation-tab {
+    left: 300px;
 }
 

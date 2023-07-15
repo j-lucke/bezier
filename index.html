@@ -13,8 +13,19 @@
         <img id="settings" class="box" src="settings.svg">
         <img id="delete" class="box" src="delete.svg">
         <img id="save" class="box" src="save.svg">
+        <img id="pause" class="box" src="pause.svg">
     </div>
-    <div id="help-message" class="hidden">Have you ever seen (or used) bezierCurveTo?</div>
+    <div id="help-message" class="hidden">
+        click to add a point. <br> click again to add another. <br> 
+        why stop there?   
+    </div>
+    <div id="settings-container" class="hidden">
+        <div id="settings-box"> </div>
+        <div id="point-tab" class="tab">point</div>
+        <div id="line-tab" class="tab">line</div>
+        <div id="curve-tab" class="tab">curve</div>
+        <div id="animation-tab" class="tab">animation</div>
+    </div>
     <script src="index.js"></script>
 </body>
 </html>

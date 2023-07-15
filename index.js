@@ -1,15 +1,19 @@
 const canvas = document.querySelector('canvas')
 const sidebar = document.getElementById('sidebar')
 const help_message = document.getElementById('help-message')
+width = window.innerWidth
+height = window.innerHeight
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 const ctx = canvas.getContext('2d')
 let time = 0.0
 let direction = 'up'
+let paused = false;
 const radius = 5
 let selectedPoint = null
 let curve = []
-
+let currentTab = document.getElementById('point-tab')
+currentTab.classList.toggle('selected-tab')
 const points = []
 points.draw = drawPoints
 
@@ -25,6 +29,7 @@ function drawPoint() {
 }
 
 function drawPoints(){
+    ctx.strokeStyle = 'black'
     if (this.length == 0) 
         return
     this.forEach(p => {
@@ -62,7 +67,7 @@ function plot(a) {
         return
     }
     if (a.length == 1){
-        curve.push(a[0])
+        if (!paused) curve.push(a[0])
     }
     a.draw()
     const b = []
@@ -84,6 +89,8 @@ function select(x,y){
 }
 
 window.addEventListener('resize', () => {
+    width = window.innerWidth
+    height = window.innerHeight
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
 })
@@ -119,21 +126,32 @@ sidebar.addEventListener('click', (event) => {
             }
             curve = [];
             break;
-        case 'help': help_message.classList.toggle('hidden'); break;
+        case 'help': document.getElementById('help-message').classList.toggle('hidden'); break;
+        case 'settings': 
+            document.getElementById('settings-container').classList.toggle('hidden'); 
+            document.getElementById('settings-container').addEventListener('click', function f(event) {
+                currentTab.classList.toggle('selected-tab')
+                currentTab = event.target
+                currentTab.classList.toggle('selected-tab')
+            }); 
+            break;
+        case 'pause': paused= !paused; break;
     }
 })
 
 setInterval( () => {
     ctx.clearRect(0,0,canvas.width,canvas.height)
-    if (direction == 'up') time += 0.01
-    else time -= 0.01
-    if (time > 1.0) {
-         direction = 'down'
-         curve = []
-    }
-    if (time < 0.0) {
-        direction = 'up'
-        curve = []
+    if (!paused) {
+        if (direction == 'up') time += 0.01
+        else time -= 0.01
+        if (time > 1.0) {
+            direction = 'down'
+            curve = []
+        }
+        if (time < 0.0) {
+            direction = 'up'
+            curve = []
+        }
     }
     plot(points)
-}, 50)
+}, 30)
