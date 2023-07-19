@@ -136,6 +136,7 @@ sidebar.addEventListener('click', (event) => {
             }); 
             break;
         case 'pause': paused= !paused; break;
+        case 'undo': points.pop(); curve=[]; break;
     }
 })
 
